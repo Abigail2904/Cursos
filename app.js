@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const {infoCursosProgramacion} = require('./cursos.js');
+const {infoCursos} = require('./cursos.js');
 
 
 //Routing (direccionamiento o enrutamiento)
@@ -11,11 +11,11 @@ app.get('/', (req, res) => {
 
 
 app.get('/api/cursos', (req, res) => {
-    res.send(JSON.stringify(infoCursosProgramacion));
+    res.send(JSON.stringify(infoCursos));
 });
 
 app.get('/api/cursos/programacion', (req, res) => {
-    res.send(JSON.stringify(infoCursosProgramacion));
+    res.send(JSON.stringify(infoCursos));
 });
 
 const PUERTO = process.env.PORT || 3000;
