@@ -5,10 +5,12 @@ const app = express();
 const {infoCursos} = require('./datos/cursos.js');
 
 //Routers
-// app.use('/api/cursos/programacion', routerProgramacion);
+//Para incluir el route de programacion en la app principal
+const routerProgramacion = require('./routers/programacion.js');
+app.use('/api/cursos/programacion', routerProgramacion);
 
 //Para incluir el route de matematicas en la app principal 
-const {routerMatematicas} = require('./routers/matematicas.js');
+const routerMatematicas = require('./routers/matematicas.js');
 app.use('/api/cursos/matematicas', routerMatematicas);
 
 
