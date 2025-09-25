@@ -1,0 +1,14 @@
+{
+  "name": "cursos-express",
+  "version": "1.0.0",
+  "description": "Mi primer proyecto con node.js y express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Madeleine De Abreu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
