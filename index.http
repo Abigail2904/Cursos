@@ -1,0 +1,12 @@
+ Send Request 
+
+POST http://localhost:3000/api/cursos/matematicas HTTP/1.1
+Content-Type: application/json
+
+{
+     "id": 11,
+     "titulo": "Aprende suma",
+     "tema": "suma",
+     "vistas": 12427,
+     "nivel": "basico"
+}
