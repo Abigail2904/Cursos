@@ -40,5 +40,49 @@ routerProgramacion.get('/:lenguaje/:nivel', (req, res) => {
 
     res.send(JSON.stringify(resultados));
 });
+routerProgramacion.post('/', (req, res) => {
+    let cursoNuevo = req.body;
+    programacion.push(cursoNuevo);
+    res.send(JSON.stringify(programacion));
+});
+//PUT para actualizar un recurso
+//DELETE para eliminar un recurso
+//En ambos casos se utiliza un id para identificar el recurso
+routerProgramacion.put('/:id', (req, res) => {
+    const id = req.params.id; //accedemos al id de la url
+    const cursoActualizado = req.body; //accedemos al cuerpo de la peticion
+
+    //buscamos el curso por id
+
+const indice = programacion.findIndex(curso => curso.id == id);
+    if(indice >= 0){
+        programacion[indice] = cursoActualizado;
+         }
+ res.send(JSON.stringify(programacion));
+});
+//PATCH para modificar parcialmente un recurso
+routerProgramacion.patch('/:id', (req, res) => {
+    const infoActualizada = req.body;
+    const id = req.params.id;
+
+    const indice = programacion.findIndex(curso => curso.id == id); //verificamos si el curso existe
+    if(indice >= 0){
+        const cursoAModificar = programacion[indice];
+        Object.assign(cursoAModificar, infoActualizada); //modifica solo algunas propiedades del objeto
+    }
+    res.send(JSON.stringify(programacion));
+});
+//DELETE para eliminar un recurso
+
+routerProgramacion.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    const indice = programacion.findIndex(curso => curso.id == id);
+
+    if(indice >= 0){
+        programacion.splice(indice, 1); //elimina el curso del array
+    }
+    res.send(JSON.stringify(programacion));
+});
+
 
 module.exports = routerProgramacion;
