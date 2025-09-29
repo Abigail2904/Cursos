@@ -48,5 +48,53 @@ routerMatematicas.post('/', (req, res) => {
     matematicas.push(cursoNuevo);
     res.send(JSON.stringify(matematicas));
 });
+//PUT para actualizar un recurso
+//DELETE para eliminar un recurso
+//En ambos casos se utiliza un id para identificar el recurso
+routerMatematicas.put('/:id', (req, res) => { 
+    const id = req.params.id; //accedemos al id de la url
+    const cursoActualizado = req.body; //accedemos al cuerpo de la peticion
+
+    //buscamos el curso por id
+
+const indice = matematicas.findIndex(curso => curso.id == id);
+    if(indice >= 0){
+        matematicas[indice] = cursoActualizado;
+         }
+ res.send(JSON.stringify(matematicas));
+});
+//PATCH para modificar parcialmente un recurso
+routerMatematicas.patch('/:id', (req, res) => {
+    const infoActualizada = req.body;
+    const id = req.params.id;
+
+    const indice = matematicas.findIndex(curso => curso.id == id); //verificamos si el curso existe
+    if(indice >= 0){
+        const cursoAModificar = matematicas[indice];
+        Object.assign(cursoAModificar, infoActualizada); //modifica solo algunas propiedades del objeto
+    }
+    res.send(JSON.stringify(matematicas));
+});
+//DELETE para eliminar un recurso
+
+routerMatematicas.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    const indice = matematicas.findIndex(curso => curso.id == id);
+
+    if(indice >= 0){
+        matematicas.splice(indice, 1); //elimina el curso del array
+    }
+    res.send(JSON.stringify(matematicas));
+});
 
 module.exports = routerMatematicas;
+
+//put actualiza todo el recurso
+//patch actualiza parcialmente el recurso
+//delete elimina el recurso
+//post crea un nuevo recurso
+
+//RES.SEND Y RES.JSON
+//res.send() puede enviar cualquier tipo de dato, pero si se le pasa un objeto o array lo convierte a JSON automaticamente
+//res.json() convierte el objeto o array a JSON y lo envia, es mas rapido que res.send() porque no tiene que verificar el tipo de dato
+//se recomienda usar res.json() cuando se trabaja con APIs que manejan datos en formato JSON
