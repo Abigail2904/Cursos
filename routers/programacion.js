@@ -1,6 +1,8 @@
 const express = require('express');
 
 const {programacion} = require('../datos/cursos.js').infoCursos;
+
+//Router de programación
 const routerProgramacion = express.Router();
 
 
